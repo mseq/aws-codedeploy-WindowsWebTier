@@ -1,26 +1,17 @@
 version: 0.0
-os: linux
+os: windows
 
 files:
   - source: files/index.html
-    destination: /var/www/html
-
-permissions:
-  - object: /var/www/html
-    pattern: index.html
-    owner: apache
-    group: apache
-    mode: 644
-    type:
-      - file
+    destination: c:\\inetpub\\wwwroot
 
 hooks:
   BeforeInstall:
-    - location: scripts/webserver-stop.sh
-    - location: scripts/delete-old-index.sh
+    - location: scripts/webserver-stop.ps1
+    - location: scripts/delete-old-index.ps1
   AfterInstall:
-    - location: scripts/sleep.sh
-    - location: scripts/webserver-start.sh
+    - location: scripts/sleep.ps1
+    - location: scripts/webserver-start.ps1
 
   # AfterAllowTestTraffic: "AfterAllowTestTrafficHookFunctionName"
   # BeforeAllowTraffic: "BeforeAllowTrafficHookFunctionName"
